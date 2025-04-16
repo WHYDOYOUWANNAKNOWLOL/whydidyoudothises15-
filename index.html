@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FREE SILENTDARK</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #555;
+        }
+        .vote-buttons {
+            margin-top: 20px;
+        }
+        .vote-buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .results {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+        .disabled {
+            cursor: not-allowed;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>FREE SILENTDARK</h1>
+    <p>SILENTDARK GOT FRAMED BY ES15 THAT PUSSY.</p>
+    <p>(c) 2025</p>
+    <p>
+        <a href="https://ES15PUSSY.com" target="_blank" rel="noopener noreferrer">
+           FREE SILENTDARK
+        </a>
+    </p>
+
+    <div class="vote-buttons">
+        <button id="yes-button" onclick="vote('yes')">Yes</button>
+        <button id="no-button" onclick="vote('no')">No</button>
+    </div>
+
+    <div class="results">
+        <p>Yes Votes: <span id="yes-votes">0</span></p>
+        <p>No Votes: <span id="no-votes">0</span></p>
+    </div>
+
+    <script>
+        // Load saved votes from localStorage
+        let yesVotes = parseInt(localStorage.getItem('yesVotes')) || 0;
+        let noVotes = parseInt(localStorage.getItem('noVotes')) || 0;
+
+        // Update the vote counts on page load
+        document.getElementById('yes-votes').textContent = yesVotes;
+        document.getElementById('no-votes').textContent = noVotes;
+
+        // Disable buttons if user already voted
+        if (localStorage.getItem('hasVoted')) {
+            disableVoting();
+        }
+
+        function vote(option) {
+            if (!localStorage.getItem('hasVoted')) {
+                if (option === 'yes') {
+                    yesVotes++;
+                    localStorage.setItem('yesVotes', yesVotes);
+                } else if (option === 'no') {
+                    noVotes++;
+                    localStorage.setItem('noVotes', noVotes);
+                }
+
+                // Update UI
+                document.getElementById('yes-votes').textContent = yesVotes;
+                document.getElementById('no-votes').textContent = noVotes;
+
+                // Set voted flag
+                localStorage.setItem('hasVoted', true);
+
+                // Disable buttons
+                disableVoting();
+            } else {
+                alert("You have already voted!");
+            }
+        }
+
+        function disableVoting() {
+            document.getElementById('yes-button').classList.add('disabled');
+            document.getElementById('yes-button').disabled = true;
+            document.getElementById('no-button').classList.add('disabled');
+            document.getElementById('no-button').disabled = true;
+        }
+    </script>
+</body>
+</html>
